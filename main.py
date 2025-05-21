@@ -1,5 +1,8 @@
-# python final exam, phitron batch 5
-# by Anup Barua, 21.5.25
+"""
+python final exam, phitron batch 5
+by Anup Barua, 21.5.25
+github code: https://github.com/anup-sdp/python_restaurant_management_system/blob/main/main.py
+"""
 
 from abc import ABC  # abstract base class
 
@@ -76,17 +79,42 @@ class Admin(User):
         customer.add_balance(1000) # give initial balance 1000 tk
         created = restaurant.add_customer(customer)
         if created:
-            print(f"customer {user_name} created")
+            print(f"Customer {user_name} created with an initial balance of 1000 TK.")
 
     def remove_customer(self, restaurant):
         user_name = input("To remove a customer, enter his/her name :")
         restaurant.remove_customer(user_name)
 
     def view_all_customers(self, restaurant):
-        restaurant.view_all_customers()    
+        restaurant.view_all_customers()
 
-    def view_menu(self, restaurant):
-        restaurant.view_menu_items()
+        
+    def manage_restaurant_food_menu(self, restaurant):
+        while True:            
+            print("Select an option: ")
+            print("1. view all food items") 
+            print("2. add a food item to menu")
+            print("3. remove a food item from menu")
+            print("4. update a food menu price")
+            print("5. update a food menu quantity/stock")
+            print("6. go to previous menu")
+            print()
+            choice = input("Select any number: ")
+            print()
+            if choice == '1':
+                restaurant.view_menu_items()
+            elif choice == '2':
+                restaurant.add_menu_item()
+            elif choice == '3':
+                restaurant.remove_menu_item()
+            elif choice == '4':
+                restaurant.update_menu_price()
+            elif choice == '5':
+                restaurant.update_menu_quantity()
+            elif choice == '6':
+                break
+            else:
+                print("Invalid Choice, try again.\n")	
 
 
 class FoodItem:
@@ -216,34 +244,8 @@ class Restaurant:
             self.menu[choice-1].quantity= new_quantity
         except ValueError:
             print('Invalid input, try again later.')
-            return
-    
-    def manage_restaurant_food_menu(self):
-        while True:            
-            print("Select an option: ")
-            print("1. view all food items") 
-            print("2. add a food item to menu")
-            print("3. remove a food item from menu")
-            print("4. update a food menu price")
-            print("5. update a food menu quantity/stock")
-            print("6. go to previous menu")
-            print()
-            choice = input("Select any number: ")
-            print()
-            if choice == '1':
-                self.view_menu_items()
-            elif choice == '2':
-                self.add_menu_item()
-            elif choice == '3':
-                self.remove_menu_item()
-            elif choice == '4':
-                self.update_menu_price()
-            elif choice == '5':
-                self.update_menu_quantity()
-            elif choice == '6':
-                break
-            else:
-                print("Invalid Choice, try again.\n")
+            return    
+
     
 
 # ---------------------------------------------------------------
@@ -285,7 +287,8 @@ def admin_menu():
         elif choice == "3":
             admin.view_all_customers(our_restaurant)
         elif choice == "4":
-            our_restaurant.manage_restaurant_food_menu()
+            #our_restaurant.manage_restaurant_food_menu() -------------------------------------------------------------
+            admin.manage_restaurant_food_menu(our_restaurant)
         elif choice == "5":            
             break
         else:
