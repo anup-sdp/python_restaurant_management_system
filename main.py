@@ -2,6 +2,7 @@
 python final exam, phitron batch 5
 by Anup Barua, 21.5.25
 github code: https://github.com/anup-sdp/python_restaurant_management_system/blob/main/main.py
+question doc: https://docs.google.com/document/d/1kFMW1ywp7tEBwZyfgMivQ-gEowSmRJXIzmib3skef7I/edit?tab=t.0#heading=h.8algxv9s3vbg
 """
 
 from abc import ABC  # abstract base class
